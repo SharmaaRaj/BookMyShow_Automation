@@ -34,6 +34,15 @@ dependencies {
     // Test Report
     implementation 'com.aventstack:extentreports:5.0.9'
     implementation 'tech.grasshopper:extentreports-cucumber7-adapter:1.10.1'
+
+    // Additional dependencies for ComprehensiveTest
+    implementation 'com.opencsv:opencsv:5.7.1'
+    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+    implementation 'commons-io:commons-io:2.11.0'
+
+    // Test utilities
+    testImplementation 'org.hamcrest:hamcrest:2.2'
+    testImplementation 'org.mockito:mockito-core:5.3.1'
 }
 
 configurations {
