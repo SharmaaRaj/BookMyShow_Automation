@@ -1,0 +1,62 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Selenium Dependencies
+    implementation 'org.seleniumhq.selenium:selenium-java:4.11.0'
+
+    // Cucumber Dependencies
+    testImplementation 'io.cucumber:cucumber-java:7.12.1'
+    testImplementation 'io.cucumber:cucumber-testng:7.12.1'
+    testImplementation 'io.cucumber:cucumber-picocontainer:7.12.1'
+
+    // TestNG
+    testImplementation 'org.testng:testng:7.8.0'
+
+    // WebDriverManager
+    implementation 'io.github.bonigarcia:webdrivermanager:5.4.1'
+
+    // Apache Commons
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+
+    // Logging
+    implementation 'org.slf4j:slf4j-api:2.0.7'
+    implementation 'ch.qos.logback:logback-classic:1.4.8'
+
+    // Test Report
+    implementation 'com.aventstack:extentreports:5.0.9'
+    implementation 'tech.grasshopper:extentreports-cucumber7-adapter:1.10.1'
+}
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+test {
+    useTestNG() {
+        suites 'src/test/resources/testng.xml'
+        useDefaultListeners = true
+    }
+
+    // Enable parallel execution
+    maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
+
+    // Test report configuration
+    reports {
+        html.required = true
+        junitXml.required = true
+    }
+
+    // System properties
+    systemProperty "cucumber.options", System.getProperty("cucumber.options")
+}
