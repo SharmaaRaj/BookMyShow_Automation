@@ -34,6 +34,9 @@ dependencies {
     // Test Report
     implementation 'com.aventstack:extentreports:5.0.9'
     implementation 'tech.grasshopper:extentreports-cucumber7-adapter:1.10.1'
+
+    // https://mvnrepository.com/artifact/org.apache.poi/poi
+    implementation 'org.apache.poi:poi:5.4.1'
 }
 
 configurations {
@@ -60,3 +63,5 @@ test {
     // System properties
     systemProperty "cucumber.options", System.getProperty("cucumber.options")
 }
+
+

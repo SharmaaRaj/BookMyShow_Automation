@@ -1,0 +1,13 @@
+11:35:12.995 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  C:\Users\Sharma Raj S\AppData\Local\JetBrains\IdeaIC2025.1\temp-testng-customsuite.xml
+
+11:35:14.210 [main] INFO  org.example.hooks.Hooks - Starting scenario: Select City and Navigate to SignIn
+11:35:14.210 [main] INFO  org.example.base.TestBase - Initializing chrome browser
+11:35:15.569 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Using chromedriver 138.0.7204.94 (resolved driver for Chrome 138)
+11:35:15.583 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\Sharma Raj S\.cache\selenium\chromedriver\win64\138.0.7204.94\chromedriver.exe
+11:35:17.532 [main] INFO  org.example.base.TestBase - Navigating to URL: https://in.bookmyshow.com
+11:35:17.919 [main] INFO  org.example.base.TestBase - Initializing chrome browser
+11:35:17.941 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Using chromedriver 138.0.7204.94 (resolved driver for Chrome 138)
+11:35:17.951 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\Sharma Raj S\.cache\selenium\chromedriver\win64\138.0.7204.94\chromedriver.exe
+11:35:19.955 [main] INFO  org.example.base.TestBase - Navigating to URL: https://in.bookmyshow.com/
+11:35:26.224 [main] INFO  org.example.hooks.Hooks - Browser closed successfully

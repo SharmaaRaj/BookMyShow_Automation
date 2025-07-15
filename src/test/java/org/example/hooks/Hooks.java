@@ -20,21 +20,19 @@ public class Hooks extends TestBase {
 
     @After
     public void tearDown(Scenario scenario) {
-        if (scenario.isFailed()) {
-            // Take screenshot
-            byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-            scenario.attach(screenshot, "image/png", "Failure Screenshot");
-
-            // Log failure information
-            logger.error("Scenario failed: {}", scenario.getName());
-            String failureMessage = scenario.getStatus().name() + " - Check screenshot for details";
-            System.err.println("\n[FAILED] " + scenario.getName() + "\nReason: " + failureMessage + "\n");
-        } else {
-            System.out.println("\n[PASSED] " + scenario.getName() + "\n");
+        if (scenario.isFailed() && driver != null) {
+            logger.info("Scenario failed: {}. Taking screenshot.", scenario.getName());
+            try {
+                final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+                scenario.attach(screenshot, "image/png", scenario.getName());
+            } catch (Exception e) {
+                logger.error("Failed to take screenshot: {}", e.getMessage());
+            }
         }
 
         if (driver != null) {
             driver.quit();
+            logger.info("Browser closed successfully");
         }
     }
 }

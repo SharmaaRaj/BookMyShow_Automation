@@ -23,6 +23,9 @@ public class BookMyShowPage extends BasePage {
     @FindBy(xpath = "//div[text()='Sign in']")
     private WebElement signInButton;
 
+    @FindBy(xpath = "//div[@id='modal-root']/div/div")
+    private WebElement loginModal;
+
     public BookMyShowPage() {
         PageFactory.initElements(driver, this);
     }
@@ -35,27 +38,16 @@ public class BookMyShowPage extends BasePage {
         WebDriverUtils.waitForPageLoad();
         WebDriverUtils.waitForElementVisible(citySearchInput);
         WebDriverUtils.safeSendKeys(citySearchInput, cityName);
-
-        try {
-            Thread.sleep(1000); // Wait for search results to populate
-            WebDriverUtils.waitForElementVisible(citySearchResult);
-            WebDriverUtils.safeClick(citySearchResult);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        WebDriverUtils.waitForElementVisible(citySearchResult);
+        WebDriverUtils.safeClick(citySearchResult);
     }
 
     /**
      * Clicks the Sign In button
      */
     public void clickSignIn() {
-        try {
-            Thread.sleep(1500); // Wait for page to stabilize after city selection
-            WebDriverUtils.waitForElementClickable(signInButton);
-            WebDriverUtils.safeClick(signInButton);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        WebDriverUtils.waitForElementClickable(signInButton);
+        WebDriverUtils.safeClick(signInButton);
     }
 
     /**
@@ -64,10 +56,8 @@ public class BookMyShowPage extends BasePage {
      */
     public boolean isLoginModalDisplayed() {
         try {
-            Thread.sleep(1000); // Wait for modal animation
-            By modalLocator = By.cssSelector("div[class*='Modal'], div[class*='modal']");
-            WebDriverUtils.waitForDynamicElement(modalLocator, 5);
-            return driver.findElement(modalLocator).isDisplayed();
+            WebDriverUtils.waitForElementVisible(loginModal);
+            return loginModal.isDisplayed();
         } catch (Exception e) {
             return false;
         }
